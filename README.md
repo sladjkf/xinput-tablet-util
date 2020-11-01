@@ -13,6 +13,7 @@ basic instructions:
 - Run the xinput command and find your graphics tablet in the list.
 - Place the name of your device exactly as it appears in a plaintext file called device\_names, in the same directory as the python files.
 - Run ./main\_gui.py
+	- Select your device from the list (this is pulled exactly from device_names)
 	- Press Swap to cycle between different monitors.
 	- Press Map to restrict your tablet to a certain area on your screen. 
 		- Press Alt twice, once at the coordinates of your top left corner and once more at the coordinates of your bottom right corner.
