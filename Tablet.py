@@ -1,6 +1,8 @@
 import subprocess
 import os
 import GetDevDispl
+from math import cos, sin, pi
+import numpy as np
 class MyTablet:
     '''
     Class intended to represent the tablet.
@@ -77,8 +79,42 @@ class MyTablet:
         matrix_list.append(y_size / SCREEN_HEIGHT)
         matrix_list.append(y_offset / SCREEN_HEIGHT)
         matrix_list += [0,0,1]
+
+        # You can add a rotation to the transformation matrix by simply multiplying it with
+        # a matrix that describes the next operation.
+        # matrix_list = []
+        # # Try swapping coordinate names to compensate for shift from rotation.
+        # s_x = x_size / SCREEN_WIDTH
+        # s_y = y_size / SCREEN_HEIGHT
+        # t_x = (x_offset ) / SCREEN_WIDTH
+        # t_y = y_offset / SCREEN_HEIGHT
+        # theta = pi/2
+
+        # matrix_list.append([s_x,0,t_x])
+        # matrix_list.append([0,s_y,t_y])
+        # matrix_list.append([0,0,1])
+
+        # print(matrix_list)
+        # mat = np.matrix(matrix_list)
+
+        # # TODO: there needs to be some sort of shift here, but idk what it needs to be
+        # x_shift = (x_offset + x_size)/SCREEN_WIDTH
+        # rotation_matrix = np.matrix([
+        #     [0,-1,1],
+        #     [1,0,0],
+        #     [0,0,1],
+        #     ])
+        # translate_matrix = np.matrix([
+        #     [1,0,t_x],
+        #     [0,1,t_y],
+        #     [0,0,1],
+        #     ])
+        # mat = mat*rotation_matrix
+        # matrix_list = mat.tolist()
+
         matrix_list = list(map(str,matrix_list))
-        print(matrix_list)
+        # matrix_list = [x.strip('[]') for x in matrix_list] 
+        # print(matrix_list)
         cmd_list = ['xinput','set-prop',str(self.device_id),'--type=float', '"Coordinate Transformation Matrix"'] + matrix_list
 
         my_cmd = ""
